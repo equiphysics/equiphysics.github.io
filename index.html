@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EquiPhysics Tools &amp; Lessons</title>
+<meta name="description" content="Free, classroom-ready mathematics tools and lessons built on real horse data from EquiPhysics. Interactive Horse Gait Lab, Colab notebooks, slides, worksheets, and teacher guides. No barn required.">
+<link rel="icon" href="logo.png">
+<style>
+  :root{
+    --ink:#1c2757; --ink-deep:#131c42; --wave:#5b7db1; --mist:#a9bdd9; --paper:#f6f7fa; --card:#ffffff;
+    --text:#22283f; --muted:#5b6380; --gold:#c9a24a; --line:#dde3ef;
+    --serif:Georgia,"Palatino Linotype","Times New Roman",serif;
+    --sans:"Segoe UI",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  html,body{max-width:100%;overflow-x:hidden}
+  body{font-family:var(--sans);color:var(--text);background:var(--paper);line-height:1.5;word-wrap:break-word}
+  a{color:var(--ink)}
+  img{max-width:100%}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px;min-width:0}
+  header.hero{background:linear-gradient(170deg,#243368 0%,var(--ink) 55%,var(--ink-deep) 100%);color:#fff;padding:40px 0 44px}
+  .hero .row{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+  .hero .row>div{flex:1 1 280px;min-width:0}
+  .card,.feature,.step{min-width:0}
+  .hero img{width:120px;height:120px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.9),0 8px 24px rgba(0,0,0,.4);flex:none}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(30px,5vw,46px);line-height:1.1}
+  .hero h1 span{color:var(--mist)}
+  .hero p.lead{margin-top:10px;font-size:18px;color:#dfe6f4;max-width:640px}
+  .hero .links{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:10px 16px;border-radius:8px;font-weight:600;text-decoration:none;font-size:15px;border:2px solid transparent}
+  .btn.primary{background:#fff;color:var(--ink)}
+  .btn.ghost{border-color:rgba(255,255,255,.6);color:#fff}
+  .btn.small{padding:7px 12px;font-size:14px}
+  .btn.colab{background:#f3f5ff;color:var(--ink);border-color:var(--line)}
+  .btn.colab:hover,.btn.ghost:hover,.btn.primary:hover{filter:brightness(.96)}
+  nav.sub{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+  nav.sub .wrap{display:flex;gap:22px;overflow-x:auto;padding:12px 20px;font-size:15px}
+  nav.sub a{text-decoration:none;color:var(--muted);white-space:nowrap}
+  nav.sub a:hover{color:var(--ink)}
+  section{padding:44px 0 8px}
+  section h2{font-family:var(--serif);font-weight:400;font-size:32px;color:var(--ink);margin-bottom:6px}
+  section p.intro{color:var(--muted);max-width:720px;margin-bottom:22px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 2px rgba(28,39,87,.04)}
+  .card h3{font-size:19px;color:var(--ink);line-height:1.25}
+  .card .tag{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .card p{font-size:15px;color:var(--text)}
+  .card ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+  .card ul li a{font-size:14px;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:5px 11px;color:var(--ink);background:#fafbfe}
+  .card ul li a:hover{border-color:var(--wave)}
+  .card .actions{margin-top:auto;padding-top:6px;display:flex;gap:8px;flex-wrap:wrap}
+  .feature{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center}
+  .feature .shot{border-radius:12px;background:linear-gradient(135deg,#eef2fb,#d9e2f3);min-height:220px;display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:var(--serif);font-size:22px;text-align:center;padding:20px}
+  .feature h3{font-size:24px;color:var(--ink);margin-bottom:8px;font-family:var(--serif);font-weight:400}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .step b{display:block;color:var(--ink);margin-bottom:4px}
+  .step p{font-size:14px;color:var(--muted)}
+  footer{margin-top:40px;background:var(--ink);color:#dfe6f4;padding:30px 0;font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  footer a{color:#fff}
+  @media (max-width:720px){.feature{grid-template-columns:1fr}.hero img{width:92px;height:92px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="row">
+      <img src="logo.png" alt="EquiPhysics logo: a white horse rising from waves">
+      <div>
+        <h1>EquiPhysics <span>Tools &amp; Lessons</span></h1>
+        <p class="lead">Free, classroom-ready mathematics built on real horse data. Everything here runs in a browser. No barn required.</p>
+        <div class="links">
+          <a class="btn primary" href="#tools">Open the Horse Gait Lab</a>
+          <a class="btn ghost" href="#lessons">Browse the lessons</a>
+          <a class="btn ghost" href="https://equiphysics.org">equiphysics.org</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="sub"><div class="wrap">
+  <a href="#tools">Tools</a><a href="#lessons">Lessons</a><a href="#templates">Project templates</a><a href="#teachers">For teachers</a><a href="#data">Data</a>
+</div></nav>
+
+<section id="tools"><div class="wrap">
+  <h2>Tools</h2>
+  <p class="intro">Interactive apps for students. Open them on any laptop, tablet, or phone.</p>
+  <div class="feature">
+    <div class="shot">Pick a gait. Watch the hooves light up. Then play with the equations that make the pattern.</div>
+    <div>
+      <div class="tag" style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700">Web app</div>
+      <h3>Horse Gait Lab</h3>
+      <p>Choose walk, trot, pace, canter, or gallop and watch a top-down horse whose hooves light up as they touch the ground. Then turn the gait into mathematics: four coupled oscillators whose coupling strength, speed, duty factor, and phase offsets you can change live. Compare your model with 80 real strides recorded on one of our horses.</p>
+      <div class="actions" style="margin-top:12px">
+        <a class="btn primary" href="https://equiphysics.github.io/web-apps/">Open the app</a>
+        <a class="btn colab" href="https://github.com/equiphysics/web-apps">Source on GitHub</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="lessons"><div class="wrap">
+  <h2>Lessons</h2>
+  <p class="intro">Each lesson comes with the data it needs. Notebooks open in Google Colab with one click and run for free; slides and worksheets download from GitHub.</p>
+  <div class="grid">
+    <div class="card">
+      <div class="tag">Precalculus to calculus · 60 minutes</div>
+      <h3>Horse Gait Lab (classroom activity)</h3>
+      <p>Gaits as coupled oscillators. Students use the web app to measure footfall timing, then describe the rhythm with period, frequency, and phase. Worksheet, teacher guide, answer key, and slides included.</p>
+      <ul>
+        <li><a href="https://github.com/equiphysics/education/raw/main/labs/Outreach-HorseGaits/Horse_Gait_Lab_Worksheet.docx">Worksheet</a></li>
+        <li><a href="https://github.com/equiphysics/education/raw/main/labs/Outreach-HorseGaits/Horse_Gait_Lab_Teacher_Guide.docx">Teacher guide</a></li>
+        <li><a href="https://github.com/equiphysics/education/raw/main/labs/Outreach-HorseGaits/Horse_Gait_Lab_Answer_Key.docx">Answer key</a></li>
+        <li><a href="https://github.com/equiphysics/education/raw/main/labs/Outreach-HorseGaits/Horse_Gait_Lab.pptx">Slides</a></li>
+      </ul>
+      <div class="actions">
+        <a class="btn primary small" href="https://equiphysics.github.io/web-apps/">Open the app</a>
+        <a class="btn colab small" href="https://github.com/equiphysics/education/tree/main/labs/Outreach-HorseGaits">All files</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tag">Differential equations · modeling</div>
+      <h3>Horse Heartbeats and the Van der Pol Oscillator</h3>
+      <p>A real electrocardiogram from Duque, one of our horses, and a classic oscillator model. Students explore nullclines and the phase plane, then tune the model to the horse's heartbeat.</p>
+      <ul>
+        <li><a href="https://github.com/equiphysics/education/raw/main/labs/horse_heart_VdP/Horse_Heart_VdP.pptx">Slides</a></li>
+        <li><a href="https://github.com/equiphysics/education/raw/main/labs/horse_heart_VdP/ECG_11.14.25_2.40.36_PM.txt">ECG data</a></li>
+        <li><a href="https://github.com/equiphysics/education/blob/main/labs/horse_heart_VdP/README.md">Instructions</a></li>
+      </ul>
+      <div class="actions">
+        <a class="btn primary small" href="https://colab.research.google.com/github/equiphysics/education/blob/main/labs/horse_heart_VdP/Horse_Heartbeats_VdP.ipynb">Open in Colab</a>
+        <a class="btn colab small" href="https://github.com/equiphysics/education/tree/main/labs/horse_heart_VdP">All files</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tag">Precalculus · trigonometry · data</div>
+      <h3>Walk and Trot Phase Models</h3>
+      <p>Real sensor data from a walk and a trot, and a phase model that explains why the legs move the way they do. Students fit the model, then test it on strides they have not seen.</p>
+      <ul>
+        <li><a href="https://github.com/equiphysics/education/raw/main/labs/Gait-1/IntroToHorseGaits-1.pptx">Slides</a></li>
+        <li><a href="https://github.com/equiphysics/education/raw/main/labs/Gait-1/20260119T121135-Duque-results.csv">Stride data (CSV)</a></li>
+      </ul>
+      <div class="actions">
+        <a class="btn primary small" href="https://colab.research.google.com/github/equiphysics/education/blob/main/labs/Gait-1/EquiPro_Gait_Lesson_1_Walk_Trot_Phase_Model.ipynb">Open in Colab</a>
+        <a class="btn colab small" href="https://github.com/equiphysics/education/tree/main/labs/Gait-1">All files</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tag">Statistics · physiology</div>
+      <h3>Heart Rate and HRV in Exercise</h3>
+      <p>Ninety days of heart-rate data from Duque's lunging sessions. Students compute heart-rate variability, compare rest with work, and ask what the numbers say about fitness and recovery.</p>
+      <ul>
+        <li><a href="https://github.com/equiphysics/education/raw/main/labs/Duque-Exercise/Duque_HR_HRV_90-days-intro.pptx">Intro slides</a></li>
+        <li><a href="https://github.com/equiphysics/education/tree/main/labs/Duque-Exercise/Duque_exercise-data">Data folder</a></li>
+      </ul>
+      <div class="actions">
+        <a class="btn primary small" href="https://colab.research.google.com/github/equiphysics/education/blob/main/labs/Duque-Exercise/Duque_Lunge_Test.ipynb">Open in Colab</a>
+        <a class="btn colab small" href="https://github.com/equiphysics/education/tree/main/labs/Duque-Exercise">All files</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="templates"><div class="wrap">
+  <h2>Project templates</h2>
+  <p class="intro">Notebooks our students use for their own research projects. Copy one, point it at your data, and go.</p>
+  <div class="grid">
+    <div class="card">
+      <div class="tag">Analysis template</div>
+      <h3>Standing Music Session</h3>
+      <p>Load a heart-rate recording from a horse listening to music, clean it, and compute heart rate and heart-rate variability over time. Rename the notebook with the horse, date, and time of your session.</p>
+      <div class="actions">
+        <a class="btn primary small" href="https://colab.research.google.com/github/equiphysics/education/blob/main/analysis_templates/Standing_Music_HorseName_Year_Month_Day_Time.ipynb">Open in Colab</a>
+        <a class="btn colab small" href="https://github.com/equiphysics/education/tree/main/analysis_templates">Folder</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="tag">Final project</div>
+      <h3>Project Reel Generator</h3>
+      <p>Turns a student's data and video into a short reel for presenting results: plots synced to the footage, titles, and captions. Built for end-of-course presentations.</p>
+      <div class="actions">
+        <a class="btn primary small" href="https://colab.research.google.com/github/equiphysics/education/blob/main/Final_Project_Reel_Generator.ipynb">Open in Colab</a>
+        <a class="btn colab small" href="https://github.com/equiphysics/education/blob/main/Final_Project_Reel_Generator.ipynb">Notebook</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="teachers"><div class="wrap">
+  <h2>For teachers</h2>
+  <p class="intro">You don't need horses, a barn, or special software. Here is how a lesson usually goes.</p>
+  <div class="steps">
+    <div class="step"><b>1. Open the notebook in Colab</b><p>Click "Open in Colab". It runs in your browser on Google's computers. Students need a Google account and nothing else.</p></div>
+    <div class="step"><b>2. Run cells with Shift+Enter</b><p>Nobody has to write new code. Students change a few numbers, re-run, and watch what happens to the horse.</p></div>
+    <div class="step"><b>3. Use the slides and worksheet</b><p>Each lesson has a short slide deck to introduce the horse and the question, and a worksheet to collect answers.</p></div>
+    <div class="step"><b>4. Make it yours</b><p>Everything is released under the MIT License. Adapt freely; please credit EquiPhysics. Questions or results to share? Write to laura_miller@equiphysics.org.</p></div>
+  </div>
+</div></section>
+
+<section id="data"><div class="wrap">
+  <h2>Data</h2>
+  <p class="intro">All measurements come from our own horses at Rancho del Nido in Sonoita, Arizona, collected noninvasively with wireless motion sensors and standard heart-rate monitors under approved animal-care protocols.</p>
+  <div class="grid">
+    <div class="card"><div class="tag">Gait</div><h3>EquiPro stride data</h3><p>Per-stride timing and symmetry from a sensor session on Duque (walk and trot).</p><div class="actions"><a class="btn colab small" href="https://github.com/equiphysics/education/raw/main/labs/Gait-1/20260119T121135-Duque-results.csv">Download CSV</a></div></div>
+    <div class="card"><div class="tag">Heart</div><h3>Equine ECG</h3><p>A raw electrocardiogram recording from Duque, used in the Van der Pol lesson.</p><div class="actions"><a class="btn colab small" href="https://github.com/equiphysics/education/raw/main/labs/horse_heart_VdP/ECG_11.14.25_2.40.36_PM.txt">Download TXT</a></div></div>
+    <div class="card"><div class="tag">Exercise</div><h3>Heart rate during lunging</h3><p>Heart-rate and HRV recordings from 90 days of exercise sessions.</p><div class="actions"><a class="btn colab small" href="https://github.com/equiphysics/education/tree/main/labs/Duque-Exercise/Duque_exercise-data">Browse folder</a></div></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div><b>EquiPhysics</b> · a 501(c)(3) nonprofit in Sonoita, Arizona · <a href="https://equiphysics.org">equiphysics.org</a></div>
+  <div><a href="https://github.com/equiphysics">GitHub</a> · <a href="https://www.instagram.com/equiphysics_institute/">Instagram</a> · <a href="https://www.facebook.com/profile.php?id=61579151426160">Facebook</a></div>
+</div></footer>
+</body>
+</html>
