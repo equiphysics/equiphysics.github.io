@@ -73,7 +73,7 @@
         <h1>EquiPhysics <span>Tools &amp; Lessons</span></h1>
         <p class="lead">Free, classroom-ready mathematics built on real horse data. Everything here runs in a browser. No barn required.</p>
         <div class="links">
-          <a class="btn primary" href="#tools">Open the Horse Gait Lab</a>
+          <a class="btn primary" href="#tools">Open the apps</a>
           <a class="btn ghost" href="#lessons">Browse the lessons</a>
           <a class="btn ghost" href="https://equiphysics.org">equiphysics.org</a>
         </div>
@@ -101,12 +101,40 @@
       </div>
     </div>
   </div>
+  <div class="feature" style="margin-top:18px">
+    <div class="shot" style="background:linear-gradient(135deg,#fbeaea,#f3d0d0);color:#8e0000">Pick an activity. Watch the heart beat and the ECG scroll. Then build the beat yourself, wave by wave.</div>
+    <div>
+      <div class="tag" style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700">Web app</div>
+      <h3>Horse Heart Lab</h3>
+      <p>A horse's heartbeat from standing (36 beats a minute) to gallop (over 200). A beating heart, a scrolling ECG with P, QRS, and T labelled, a heart-rate-variability tachogram, and sliders for heart rate, breathing, wave shapes, and dropped beats. The model is a phase clock with one Gaussian bump per wave (McSharry et al. 2003), tuned to Duque's real ECG. Compare it with his actual recordings standing, walking, and trotting.</p>
+      <div class="actions" style="margin-top:12px">
+        <a class="btn primary" href="https://equiphysics.github.io/web-apps/heart/">Open the app</a>
+        <a class="btn colab" href="https://github.com/equiphysics/web-apps/tree/main/heart">Source on GitHub</a>
+      </div>
+    </div>
+  </div>
 </div></section>
 
 <section id="lessons"><div class="wrap">
   <h2>Lessons</h2>
   <p class="intro">Each lesson comes with the data it needs. Notebooks open in Google Colab with one click and run for free; slides and worksheets download from GitHub.</p>
   <div class="grid">
+    <div class="card">
+      <div class="tag">Biology · precalculus · 60 minutes</div>
+      <h3>Horse Heart Lab (classroom activity)</h3>
+      <p>Read a horse's ECG, measure heart-rate variability, and build a beat from a clock and five bumps. Students match the model to Duque's real recordings and find the beats the strap missed. Worksheet, teacher guide, answer key, and slides included.</p>
+      <ul>
+        <li><a href="https://github.com/equiphysics/education/raw/main/labs/Horse-Heart-Lab/Horse_Heart_Lab_Worksheet.docx">Worksheet</a></li>
+        <li><a href="https://github.com/equiphysics/education/raw/main/labs/Horse-Heart-Lab/Horse_Heart_Lab_Teacher_Guide.docx">Teacher guide</a></li>
+        <li><a href="https://github.com/equiphysics/education/raw/main/labs/Horse-Heart-Lab/Horse_Heart_Lab_Answer_Key.docx">Answer key</a></li>
+        <li><a href="https://github.com/equiphysics/education/raw/main/labs/Horse-Heart-Lab/Horse_Heart_Lab.pptx">Slides</a></li>
+      </ul>
+      <div class="actions">
+        <a class="btn primary small" href="https://equiphysics.github.io/web-apps/heart/">Open the app</a>
+        <a class="btn colab small" href="https://github.com/equiphysics/education/tree/main/labs/Horse-Heart-Lab">All files</a>
+      </div>
+    </div>
+
     <div class="card">
       <div class="tag">Precalculus to calculus · 60 minutes</div>
       <h3>Horse Gait Lab (classroom activity)</h3>
@@ -126,7 +154,7 @@
     <div class="card">
       <div class="tag">Differential equations · modeling</div>
       <h3>Horse Heartbeats and the Van der Pol Oscillator</h3>
-      <p>A real electrocardiogram from Duque, one of our horses, and a classic oscillator model. Students explore nullclines and the phase plane, then tune the model to the horse's heartbeat.</p>
+      <p>The deeper, computational follow-up to the Horse Heart Lab: a real electrocardiogram from Duque, one of our horses, and a classic oscillator model. Students explore nullclines and the phase plane, then tune the model to the horse's heartbeat.</p>
       <ul>
         <li><a href="https://github.com/equiphysics/education/raw/main/labs/horse_heart_VdP/Horse_Heart_VdP.pptx">Slides</a></li>
         <li><a href="https://github.com/equiphysics/education/raw/main/labs/horse_heart_VdP/ECG_11.14.25_2.40.36_PM.txt">ECG data</a></li>
